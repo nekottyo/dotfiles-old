@@ -1,7 +1,12 @@
-syntax enable 
-let g:solarized_termcolors=1
-set background=dark
-colorscheme solarized
+"yntax enable
+"set background=dark
+"colorscheme solarized
+colorscheme hybrid
+
+"syntax on
+"colorscheme badwolf
+"highlight Normal ctermbg=none
+
 
 if has('gui_running')
     set background=light
@@ -11,15 +16,15 @@ endif
 
 set laststatus=2
 
-if !has('gui_running')
-  set t_Co=256
-endif
+"if !has('gui_running')
+"  set t_Co=256
+"endif
 
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"⭤":""}',
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
+"let g:lightline = {
+"      \ 'colorscheme': 'solarized',
+"      \ 'component': {
+"      \   'readonly': '%{&readonly?"⭤":""}'
+"      \ },
+"      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+"      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+"      \ }

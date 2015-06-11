@@ -1,8 +1,7 @@
 source ~/.vimrc.color
-
 source ~/.vimrc.basic
-
 source ~/.vimrc.editing
+
 
 " Note: Skip initialization for vim-tiny or vim-small.
  if !1 | finish | endif
@@ -36,4 +35,13 @@ source ~/.vimrc.editing
  " this will conveniently prompt you to install them.
  NeoBundleCheck
 
+
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'alpaca-tc/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'Lokaltog/powerline-fontpatcher'
+NeoBundle 'sjl/badwolf'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-colorscheme'

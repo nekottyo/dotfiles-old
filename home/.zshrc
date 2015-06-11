@@ -1,12 +1,14 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export CLICOLOR=1
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 
-ZSH_THEME="blinks"
+ZSH_THEME="junkfood"
 #ZSH_THEME="agnoster"
 
 #lsで色付けを有効に
@@ -149,3 +151,6 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 #source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+if [ -e /usr/local/share/zsh-completions ]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+fi
