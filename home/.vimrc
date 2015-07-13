@@ -35,7 +35,7 @@ source ~/.vimrc.editing
  " this will conveniently prompt you to install them.
  NeoBundleCheck
 
-
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
@@ -45,3 +45,5 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
+call neobundle#end()
+syntax on 

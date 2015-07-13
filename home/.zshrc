@@ -8,12 +8,12 @@ export CLICOLOR=1
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 
-ZSH_THEME="junkfood"
-#ZSH_THEME="agnoster"
+#ZSH_THEME="dracula"
+ZSH_THEME="ys"
 
 #lsで色付けを有効に
-alias ls=’gls --color=auto’
-eval $(gdircolors ~/.solarized-color/dircolors-solarized/dircolors.ansi-universal)
+alias ls='ls --color=auto'
+#eval $(gdircolors ~/.solarized-color/dircolors-solarized/dircolors.ansi-universal)
 
 # 自動補完を有効に
 autoload -U compinit promptinit
@@ -27,7 +27,7 @@ zstyle ':completion:*:processes' command "ps -u $USER -o pid,stat,%cpu,%mem,cput
 
 #補完でカラーを使用する
 autoload colors
-#zstyle ':completion:*' list-colors "${LS_COLORS}"
+zstyle ':completion:*' list-colors "${LS_COLORS}"
 if [ -n "$LS_COLORS" ]; then
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
@@ -123,7 +123,7 @@ alias -s {png,jpg,bmp,PNG,JPG,BMP}=eog
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew brew-cask zsh-syntax-highlighting ssh-agent vagrant)
+plugins=(git brew brew-cask ssh-agent vagrant tmux zsh-syntax-highlighting )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -148,9 +148,12 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+#source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 #source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+#fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
+#alias vim='TERM=xterm-color vim'
+alias tmux="LD_LIBRARY_PATH=/usr/local/lib /usr/local/bin/tmux"
+alias psg="ps aux | grep"
