@@ -21,8 +21,13 @@ set notitle                      " vimを使ってくれてありがとう
 set number                       " 行番号を表示
 set nocompatible
 set smarttab                     " 高度なタブ設定
+set smartindent
 set showmatch                    " 対応する括弧を強調表示 
-
+set tabstop=2
+set shiftwidth=2
+"set expandtab
+set softtabstop=0
+set encoding=utf-8
 
 " OSのクリップボードを使用する
 set clipboard+=unnamed

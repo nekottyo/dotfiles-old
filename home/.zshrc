@@ -1,18 +1,18 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export CLICOLOR=1
-
-
+export EDITOR='vim'
+LS_COLORS="= ~/.dircolors"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 
 #ZSH_THEME="dracula"
-ZSH_THEME="ys"
+ZSH_THEME="xxf"
 
 #lsで色付けを有効に
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 #eval $(gdircolors ~/.solarized-color/dircolors-solarized/dircolors.ansi-universal)
 
 # 自動補完を有効に
@@ -124,7 +124,7 @@ alias -s {png,jpg,bmp,PNG,JPG,BMP}=eog
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git brew brew-cask ssh-agent vagrant tmux zsh-syntax-highlighting )
-
+alias git='nocorrect git'
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -157,3 +157,41 @@ fi
 #alias vim='TERM=xterm-color vim'
 alias tmux="LD_LIBRARY_PATH=/usr/local/lib /usr/local/bin/tmux"
 alias psg="ps aux | grep"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export LD_LIBRARY_PATH=/usr/local/lib
+
+function ssh() {
+  if [[ -n $(printenv TMUX) ]]
+  then
+    local window_name=$(tmux display -p '#{window_name}')
+    tmux rename-window -- "$@[-1]" # zsh specified
+    # tmux rename-window -- "${!#}" # for bash
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
+}
+
+export LS_COLORS
+if [ -f ~/.dircolors ]; then
+    if type dircolors > /dev/null 2>&1; then
+        eval $(dircolors ~/.dircolors)
+    elif type gdircolors > /dev/null 2>&1; then
+        eval $(gdircolors ~/.dircolors)
+    fi
+fi
+
+# ssh 時に新規ウィンドウを作る
+ssh_tmux() {
+    ssh_cmd="ssh $@"
+    tmux new-window -n "$*" "$ssh_cmd"
+}
+
+if [ $TERM = "screen" ] ; then
+    tmux lsw
+    if [ $? -eq 0 ] ; then
+        alias ssh=ssh_tmux
+    fi
+fi
