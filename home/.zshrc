@@ -195,3 +195,6 @@ if [ $TERM = "screen" ] ; then
         alias ssh=ssh_tmux
     fi
 fi
+
+
+alias hop='ssh hop'
