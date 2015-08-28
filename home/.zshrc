@@ -7,9 +7,9 @@ LS_COLORS="= ~/.dircolors"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-
+alias vim='/usr/local/bin/vim'
 #ZSH_THEME="dracula"
-ZSH_THEME="xxf"
+ZSH_THEME="steeef"
 
 #lsで色付けを有効に
 #alias ls='ls --color=auto'
