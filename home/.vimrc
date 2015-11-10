@@ -48,7 +48,8 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'ervandew/supertab'
-
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'stephenmckinney/vim-solarized-powerline'
 " if_luaが有効ならneocompleteを使う
 NeoBundle 'Shougo/neocomplete'
 

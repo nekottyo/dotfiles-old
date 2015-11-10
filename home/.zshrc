@@ -129,8 +129,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -157,7 +157,7 @@ fi
 #alias vim='TERM=xterm-color vim'
 alias tmux="LD_LIBRARY_PATH=/usr/local/lib /usr/local/bin/tmux"
 alias psg="ps aux | grep"
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:/opt/local/bin:$PATH"
 eval "$(rbenv init -)"
 export LD_LIBRARY_PATH=/usr/local/lib
 
@@ -201,7 +201,8 @@ alias hop='ssh hop'
 
 
 if [ "${TMUX}" != "" ] ; then
-        tmux pipe-pane 'cat >> ~/log/`date +%Y-%m-%d`_#S:#I.#P.log'
+  #tmux pipe-pane 'cat >> ~/log/`date +%Y-%m-%d`_#S:#I.#P.log'
+  tmux pipe-pane 'cat | rotatelogs -L ~/log/%Y%m%d_#S:#I.#P.lnk ~/log/%Y%m%d_#S:#I.#P.log 86400 540'
 fi
 
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
@@ -265,3 +266,5 @@ function tmux_automatically_attach_session()
     fi
 }
 tmux_automatically_attach_session
+
+
