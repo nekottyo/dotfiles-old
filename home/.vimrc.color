@@ -20,7 +20,7 @@ set laststatus=2
 "if !has('gui_running')
 "  set t_Co=256
 "endif
-let g:Powerline_theme='short'
+"let g:Powerline_theme='short'
 let g:Powerline_colorscheme='solarized256_dark'
 let g:lightline = {
       \ 'colorscheme': 'solarized',

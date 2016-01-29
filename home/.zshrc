@@ -124,7 +124,6 @@ alias -s {png,jpg,bmp,PNG,JPG,BMP}=eog
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git brew brew-cask ssh-agent vagrant tmux zsh-syntax-highlighting )
-alias git='nocorrect git'
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -267,4 +266,9 @@ function tmux_automatically_attach_session()
 }
 tmux_automatically_attach_session
 
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+
+source /opt/rh/devtoolset-2/enable
 

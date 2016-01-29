@@ -34,7 +34,6 @@ source ~/.vimrc.python
  " If there are uninstalled bundles found on startup,
  " this will conveniently prompt you to install them.
  NeoBundleCheck
-
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
@@ -50,6 +49,12 @@ NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'stephenmckinney/vim-solarized-powerline'
+NeoBundle 'altercation/vim-colors-solarized'
+
+" syntax + 自動compile
+NeoBundle 'kchmck/vim-coffee-script'
+" js BDDツール
+NeoBundle 'claco/jasmine.vim'
 " if_luaが有効ならneocompleteを使う
 NeoBundle 'Shougo/neocomplete'
 
@@ -71,4 +76,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 
 call neobundle#end()
+au BufRead,BufNewFile,BufReadPre *.coffee    set filetype=coffee
+autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+"au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 syntax on 
