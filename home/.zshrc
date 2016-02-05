@@ -272,3 +272,29 @@ eval "$(pyenv init -)"
 
 source /opt/rh/devtoolset-2/enable
 
+# 重複履歴を無視
+export HISTCONTROL=ignoreboth:erasedups
+
+# 履歴保存対象から外す
+export HISTIGNORE="fg*:bg*:history*:wmctrl*:exit*:ls -al:cd ~"
+
+# コマンド履歴にコマンドを使ったの時刻を記録する
+export HISTTIMEFORMAT='%Y%m%d %T '
+
+export HISTSIZE=10000
+
+# settings for peco
+_replace_by_history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1| eval $tac | awk '!a[$0]++' | peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    # zle clear-screen
+}
+zle -N _replace_by_history
+bindkey '^R' _replace_by_history
+
