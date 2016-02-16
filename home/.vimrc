@@ -2,7 +2,7 @@ source ~/.vimrc.color
 source ~/.vimrc.basic
 source ~/.vimrc.editing
 source ~/.vimrc.python
-
+let PATH = expand("~/.pyenv/shims") . ":" . $PATH
 " Note: Skip initialization for vim-tiny or vim-small.
  if !1 | finish | endif
 
@@ -15,6 +15,7 @@ source ~/.vimrc.python
    set runtimepath+=~/.vim/bundle/neobundle.vim/
  endif
 
+"let $PATH = "~/.pyenv/shims:".$PATH
  " Required:
  call neobundle#begin(expand('~/.vim/bundle/'))
 
@@ -31,10 +32,11 @@ source ~/.vimrc.python
  " Required:
  filetype plugin indent on
 
- " If there are uninstalled bundles found on startup,
- " this will conveniently prompt you to install them.
- NeoBundleCheck
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 call neobundle#begin(expand('~/.vim/bundle/'))
+" IncludePath(expand("~/.pyenv/shims"))
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
 " NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
@@ -45,11 +47,30 @@ NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'stephenmckinney/vim-solarized-powerline'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'scrooloose/syntastic'
+
+
+NeoBundleLazy "lambdalisue/vim-django-support", {
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"]
+      \ }}
+
+" 補完用に jedi-vim を追加
+NeoBundle "davidhalter/jedi-vim"
+
+" pyenv 処理用に vim-pyenv を追加
+" Note: depends が指定されているため jedi-vim より後にロードされる（ことを期待）
+NeoBundleLazy "lambdalisue/vim-pyenv", {
+      \ "depends": ['davidhalter/jedi-vim'],
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"]
+      \ }}
+
+" ... neobundle.vim 終了処理等
 
 " syntax + 自動compile
 NeoBundle 'kchmck/vim-coffee-script'
@@ -58,14 +79,6 @@ NeoBundle 'claco/jasmine.vim'
 " if_luaが有効ならneocompleteを使う
 NeoBundle 'Shougo/neocomplete'
 
-    " neocomplete用設定
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_ignore_case = 1
-    let g:neocomplete#enable_smart_case = 1
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns._ = '\h\w*'
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
@@ -81,3 +94,4 @@ autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
 "au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 syntax on 
+
