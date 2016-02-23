@@ -59,9 +59,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-
+let g:syntastic_python_checkers = ['pep8']
 
 ""------------------------------------------------
 "" flake8-vim
@@ -78,6 +76,7 @@ let g:syntastic_check_on_wq = 0
 " original http://stackoverflow.com/questions/12374200/using-uncrustify-with-vim/15513829#15513829
 let g:autopep8_indent_size=2
 let g:autopep8_aggressive=1
+let g:autopep8_ignore="E501,D103"
 function! Preserve(command)
     " Save the last search.
     let search = @/
