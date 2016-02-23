@@ -1,7 +1,6 @@
 source ~/.vimrc.color
 source ~/.vimrc.basic
 source ~/.vimrc.editing
-source ~/.vimrc.python
 let PATH = expand("~/.pyenv/shims") . ":" . $PATH
 " Note: Skip initialization for vim-tiny or vim-small.
  if !1 | finish | endif
@@ -52,7 +51,8 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'stephenmckinney/vim-solarized-powerline'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/syntastic'
-
+NeoBundle 'tell-k/vim-autopep8'
+"NeoBundle 'andviro/flake8-vim'
 
 NeoBundleLazy "lambdalisue/vim-django-support", {
       \ "autoload": {
@@ -70,7 +70,6 @@ NeoBundleLazy "lambdalisue/vim-pyenv", {
       \   "filetypes": ["python", "python3", "djangohtml"]
       \ }}
 
-" ... neobundle.vim 終了処理等
 
 " syntax + 自動compile
 NeoBundle 'kchmck/vim-coffee-script'
@@ -88,6 +87,12 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
 
+"NeoBundle 'hachibeeDI/vim-operator-autopep8', {
+"  \   'depends': ['kana/vim-operator-user', 'andviro/flake8-vim'],
+"  \ }
+"map ,p <Plug>(operator-autopep8)
+
+" ... neobundle.vim 終了処理等
 call neobundle#end()
 au BufRead,BufNewFile,BufReadPre *.coffee    set filetype=coffee
 autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
@@ -95,3 +100,4 @@ autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 syntax on 
 
+source ~/.vimrc.python

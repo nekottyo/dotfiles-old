@@ -3,6 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 export CLICOLOR=1
 export EDITOR='vim'
 LS_COLORS="~/.dircolors"
+export LD_LIBRARY_PATH=/usr/local/lib:/lib:/lib64:/opt/rh/devtoolset-2/root/usr/lib64:/opt/rh/devtoolset-2/root/usr/lib
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -128,7 +129,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin"
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin
 export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -154,11 +155,11 @@ if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 #alias vim='TERM=xterm-color vim'
-alias tmux="LD_LIBRARY_PATH=/usr/local/lib /usr/local/bin/tmux"
+alias tmux="/usr/local/bin/tmux"
 alias psg="ps aux | grep"
 export PATH="$HOME/.rbenv/bin:/opt/local/bin:$PATH"
 eval "$(rbenv init -)"
-export LD_LIBRARY_PATH=/usr/local/lib
+#export LD_LIBRARY_PATH=/usr/local/lib
 
 function ssh() {
   if [[ -n $(printenv TMUX) ]]
@@ -269,6 +270,7 @@ tmux_automatically_attach_session
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 source /opt/rh/devtoolset-2/enable
 

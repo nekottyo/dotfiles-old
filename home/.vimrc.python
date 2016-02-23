@@ -60,3 +60,48 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+
+""------------------------------------------------
+"" flake8-vim
+""------------------------------------------------
+"let g:PyFlakeOnWrite = 1
+"let g:PyFlakeCheckers = 'pep8'
+"let g:PyFlakeDisabledMessages = 'E501'
+"let g:PyFlakeAggressive = 0
+"let g:PyFlakeRangeCommand
+"nnoremap <S-l> :call PyFlakeAuto<CR>
+"------------------------------------------------
+" autopep8
+"------------------------------------------------
+" original http://stackoverflow.com/questions/12374200/using-uncrustify-with-vim/15513829#15513829
+let g:autopep8_indent_size=2
+let g:autopep8_aggressive=1
+function! Preserve(command)
+    " Save the last search.
+    let search = @/
+    " Save the current cursor position.
+    let cursor_position = getpos('.')
+    " Save the current window position.
+    normal! H
+    let window_position = getpos('.')
+    call setpos('.', cursor_position)
+    " Execute the command.
+    execute a:command
+    " Restore the last search.
+    let @/ = search
+    " Restore the previous window position.
+    call setpos('.', window_position)
+    normal! zt
+    " Restore the previous cursor position.
+    call setpos('.', cursor_position)
+endfunction
+
+function! Autopep8()
+    "--ignote=E501: 一行の長さの補正を無視"
+    call Preserve(':silent %!autopep8 --aggressive --aggressive --ignore=D103 --ignore=E501 -')
+endfunction
+" Shift + L でautopep自動修正
+nnoremap <S-l> :call Autopep8()<CR>
+
