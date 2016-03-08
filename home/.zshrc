@@ -300,3 +300,5 @@ _replace_by_history() {
 zle -N _replace_by_history
 bindkey '^R' _replace_by_history
 
+export PATH=$PATH:/usr/local/go/bin
+alias go='nocorrect go'

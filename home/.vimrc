@@ -52,8 +52,11 @@ NeoBundle 'stephenmckinney/vim-solarized-powerline'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tell-k/vim-autopep8'
+NeoBundle 'vim-jp/vim-go-extra'
+
 "NeoBundle 'andviro/flake8-vim'
 
+""" for python""""
 NeoBundleLazy "lambdalisue/vim-django-support", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"]
@@ -69,7 +72,15 @@ NeoBundleLazy "lambdalisue/vim-pyenv", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"]
       \ }}
+"""
 
+""" for go"""
+NeoBundle 'scrooloose/syntastic'
+
+let g:syntastic_mode_map = { 'mode': 'passive',
+    \ 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go', 'golint']
+"""
 
 " syntax + 自動compile
 NeoBundle 'kchmck/vim-coffee-script'
