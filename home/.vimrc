@@ -53,6 +53,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tell-k/vim-autopep8'
 NeoBundle 'vim-jp/vim-go-extra'
+NeoBundle 'fatih/vim-go'
 
 "NeoBundle 'andviro/flake8-vim'
 
@@ -74,12 +75,26 @@ NeoBundleLazy "lambdalisue/vim-pyenv", {
       \ }}
 """
 
-""" for go"""
 NeoBundle 'scrooloose/syntastic'
+
+""" for go"""
 
 let g:syntastic_mode_map = { 'mode': 'passive',
     \ 'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
+
+NeoBundleLazy 'fatih/vim-go', {
+            \ 'autoload' : { 'filetypes' : 'go'  }
+            \ }
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+
+if !exists('g:neocomplete#omni_patterns')
+  let g:neocomplete#omni_patterns = {}
+endif
+let g:neocomplete#omni_patterns.go = '\h\w*\.\?'
+
 """
 
 " syntax + 自動compile

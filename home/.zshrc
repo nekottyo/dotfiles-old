@@ -3,14 +3,15 @@ export ZSH=$HOME/.oh-my-zsh
 export CLICOLOR=1
 export EDITOR='vim'
 LS_COLORS="~/.dircolors"
-export LD_LIBRARY_PATH=/usr/local/lib:/lib:/lib64:/opt/rh/devtoolset-2/root/usr/lib64:/opt/rh/devtoolset-2/root/usr/lib
+#export LD_LIBRARY_PATH=/usr/local/lib:/lib:/lib64:/opt/rh/devtoolset-2/root/usr/lib64:/opt/rh/devtoolset-2/root/usr/lib
+export LD_LIBRARY_PATH=/usr/local/lib:/lib:/lib64
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 alias vim='/usr/local/bin/vim'
-#ZSH_THEME="dracula"
-ZSH_THEME="steeef"
+ZSH_THEME="ys"
+#ZSH_THEME="steeef"
 
 #lsで色付けを有効に
 #alias ls='ls --color=auto'
@@ -272,7 +273,7 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-source /opt/rh/devtoolset-2/enable
+#source /opt/rh/devtoolset-2/enable
 
 # 重複履歴を無視
 export HISTCONTROL=ignoreboth:erasedups
@@ -302,3 +303,19 @@ bindkey '^R' _replace_by_history
 
 export PATH=$PATH:/usr/local/go/bin
 alias go='nocorrect go'
+export GOPATH=$HOME/.go
+export GOROOT=/usr/local/go
+
+#man色付け
+export MANPAGER='less -R'
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+		man "$@"
+}

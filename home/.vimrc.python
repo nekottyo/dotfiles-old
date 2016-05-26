@@ -74,33 +74,39 @@ let g:syntastic_python_checkers = ['pep8']
 " autopep8
 "------------------------------------------------
 " original http://stackoverflow.com/questions/12374200/using-uncrustify-with-vim/15513829#15513829
-let g:autopep8_indent_size=2
-let g:autopep8_aggressive=1
-let g:autopep8_ignore="E501,D103"
-function! Preserve(command)
-    " Save the last search.
-    let search = @/
-    " Save the current cursor position.
-    let cursor_position = getpos('.')
-    " Save the current window position.
-    normal! H
-    let window_position = getpos('.')
-    call setpos('.', cursor_position)
-    " Execute the command.
-    execute a:command
-    " Restore the last search.
-    let @/ = search
-    " Restore the previous window position.
-    call setpos('.', window_position)
-    normal! zt
-    " Restore the previous cursor position.
-    call setpos('.', cursor_position)
-endfunction
+"let g:autopep8_indent_size=2
+"let g:autopep8_aggressive=1
+"let g:autopep8_ignore="E501,D103"
+"function! Preserve(command)
+"    " Save the last search.
+"    let search = @/
+"    " Save the current cursor position.
+"    let cursor_position = getpos('.')
+"    " Save the current window position.
+"    normal! H
+"    let window_position = getpos('.')
+"    call setpos('.', cursor_position)
+"    " Execute the command.
+"    execute a:command
+"    " Restore the last search.
+"    let @/ = search
+"    " Restore the previous window position.
+"    call setpos('.', window_position
+"    normal! zt
+"    " Restore the previous cursor position.
+"    call setpos('.', cursor_position)
+"endfunction
 
 function! Autopep8()
     "--ignote=E501: 一行の長さの補正を無視"
-    call Preserve(':silent %!autopep8 --aggressive --aggressive --ignore=D103 --ignore=E501 -')
+"    call Preserve(':silent %!autopep8 --aggressive --aggressive --ignore=D103 --ignore=E501 -')
 endfunction
 " Shift + L でautopep自動修正
 nnoremap <S-l> :call Autopep8()<CR>
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 
+
+" Force indentation styles for this directory
+autocmd FileType python set shiftwidth=2
+autocmd FileType python set tabstop=2
+autocmd FileType python set softtabstop=2
