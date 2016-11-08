@@ -54,6 +54,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tell-k/vim-autopep8'
 NeoBundle 'vim-jp/vim-go-extra'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'pearofducks/ansible-vim'
+NeoBundle 'elzr/vim-json'
 
 "NeoBundle 'andviro/flake8-vim'
 
@@ -74,8 +76,6 @@ NeoBundleLazy "lambdalisue/vim-pyenv", {
       \   "filetypes": ["python", "python3", "djangohtml"]
       \ }}
 """
-
-NeoBundle 'scrooloose/syntastic'
 
 """ for go"""
 
@@ -125,5 +125,12 @@ autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
 "au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 syntax on 
+
+execute pathogen#infect()
+filetype plugin indent on
+let g:mustache_abbreviations = 1
+
+" shellcheck
+let g:syntastic_sh_checkers = ['shellcheck']
 
 source ~/.vimrc.python

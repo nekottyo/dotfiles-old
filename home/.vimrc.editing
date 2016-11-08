@@ -32,7 +32,7 @@ endif
 
 
 set encoding=utf-8
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 " 文字コードの自動認識
 " if &encoding !=# 'utf-8'
 "   set encoding=japan
