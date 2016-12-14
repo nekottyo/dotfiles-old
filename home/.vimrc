@@ -59,11 +59,11 @@ NeoBundle 'elzr/vim-json'
 
 "NeoBundle 'andviro/flake8-vim'
 
-""" for python""""
-NeoBundleLazy "lambdalisue/vim-django-support", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
+"""" for python""""
+"NeoBundleLazy "lambdalisue/vim-django-support", {
+"      \ "autoload": {
+"      \   "filetypes": ["python", "python3", "djangohtml"]
+"      \ }}
 
 " 補完用に jedi-vim を追加
 NeoBundle "davidhalter/jedi-vim"

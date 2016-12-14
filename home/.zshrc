@@ -5,13 +5,18 @@ export EDITOR='vim'
 LS_COLORS="~/.dircolors"
 #export LD_LIBRARY_PATH=/usr/local/lib:/lib:/lib64:/opt/rh/devtoolset-2/root/usr/lib64:/opt/rh/devtoolset-2/root/usr/lib
 export LD_LIBRARY_PATH=/usr/local/lib:/lib:/lib64
+
+export PATH=$PATH:/usr/local/go/bin
+alias go='nocorrect go'
+export GOPATH=$HOME/.go
+export GOROOT=/usr/local/go
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-alias vim='/usr/local/bin/vim'
 ZSH_THEME="ys"
 #ZSH_THEME="steeef"
+alias vim='/usr/local/bin/vim'
 
 #lsで色付けを有効に
 #alias ls='ls --color=auto'
@@ -128,6 +133,7 @@ alias -s {png,jpg,bmp,PNG,JPG,BMP}=eog
 plugins=(git brew brew-cask ssh-agent vagrant docker tmux zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
 
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin
@@ -199,7 +205,7 @@ fi
 
 
 alias hop='ssh hop'
-
+alias nurse='ssh nurse.sh.iiji.jp'
 
 if [ "${TMUX}" != "" ] ; then
   #tmux pipe-pane 'cat >> ~/log/`date +%Y-%m-%d`_#S:#I.#P.log'
@@ -301,10 +307,6 @@ _replace_by_history() {
 zle -N _replace_by_history
 bindkey '^R' _replace_by_history
 
-export PATH=$PATH:/usr/local/go/bin
-alias go='nocorrect go'
-export GOPATH=$HOME/.go
-export GOROOT=/usr/local/go
 
 #man色付け
 export MANPAGER='less -R'
