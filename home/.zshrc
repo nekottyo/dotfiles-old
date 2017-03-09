@@ -209,7 +209,7 @@ alias nurse='ssh nurse.sh.iiji.jp'
 
 if [ "${TMUX}" != "" ] ; then
   #tmux pipe-pane 'cat >> ~/log/`date +%Y-%m-%d`_#S:#I.#P.log'
-  tmux pipe-pane 'cat | rotatelogs -L ~/log/%Y%m%d_#S:#I.#P.lnk ~/log/%Y%m%d_#S:#I.#P.log 86400 540'
+  tmux pipe-pane 'cat | rotatelogs -L ~/log/tmux.lnk ~/log/%Y%m%d_#S:#I.#P.log 86400 540'
 fi
 
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
@@ -275,7 +275,7 @@ function tmux_automatically_attach_session()
 tmux_automatically_attach_session
 
 export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
+export PATH=$PATH:$PYENV_ROOT/bin
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
